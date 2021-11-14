@@ -10,12 +10,15 @@
   </body>
 
   <script>
+
+    var clientID = "2377d92b35a84c44ba11534ab4c7b0cf";
+    var secretKey = "b4c547d0ad374d80952d06b492e046b5";
     var myRequest = new XMLHttpRequest();
-    myRequest.open("POST", "https://api.spotify.com/api/token"); // "https://mdn.github.io/fetch-examples/fetch-request/flowers.jpg"
+    myRequest.open("POST", "https://api.spotify.com/api/token"); 
     myRequest.setRequestHeader("content-type", "application/json");
-    var myRequestBody = "{code:" + window.location.search.substr(6) + ",grant-type:authorization_code,redirect_uri:'http://zackhudg.github.io/landingPage.html'}";
-    console.log(window.location.search.substr(6));
-    myRequest.send(myRequestBody);
+    myRequest.setRequestHeader("authorization", "Basic " + clientID + ":" + secretKey);
+    var jsonstring = JSON.stringify({"grant-type":"authorization_code","code":window.location.search.substr(6),"redirect_uri":"http://zackhudg.github.io/landingPage.html"})
+    myRequest.send(jsonstring);
     var token = myRequest.body;
     console.log(token);
 
