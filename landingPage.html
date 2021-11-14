@@ -10,10 +10,19 @@
   </body>
 
   <script>
-
     var myRequest = new XMLHttpRequest();
-    myRequest.open("GET", "https://api.spotify.com/v1/me/albums"); // "https://mdn.github.io/fetch-examples/fetch-request/flowers.jpg"
+    myRequest.open("POST", "https://api.spotify.com/api/token"); // "https://mdn.github.io/fetch-examples/fetch-request/flowers.jpg"
+    myRequest.setRequestHeader("grant-type","authorization_code");
+    myRequest.setRequestHeader("code", window.location.search.substr(1));
+    myRequest.setRequestHeader("redirect_uri", "http://zackhudg.github.io/landingPage.html";
     myRequest.send();
+    var token = myRequest.body;
+
+    //myRequest = new XMLHttpRequest();
+    //myRequest.open("GET", "https://api.spotify.com/v1/me/albums"); // "https://mdn.github.io/fetch-examples/fetch-request/flowers.jpg"
+    //myRequest.setRequestHeader("Content-Type","application/json");
+    //myRequest.setRequestHeader("Authorization","Bearer " + token);
+    //myRequest.send();
 
     myRequest.onload = function(){
       if(myRequest.status == 200){
@@ -24,6 +33,8 @@
       }
     }
 
+    
+
     function addToQueue(){
         request({url:"https://api.spotify.com/v1/me/albums"}, function(res,err){
             if(res){
@@ -32,6 +43,8 @@
             }
         });
     }
+
+    
   </script>
 </html>
 
