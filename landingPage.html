@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Landing page</title>
+    
+  </head>
+
+  <body>
+    
+  </body>
+
+  <script>
+      function addToQueue(){
+          request({url:"https://api.spotify.com/v1/me/albums"}, function(res,err){
+              if(res){
+                  var albums = JSON.parse(res.body);
+                  console.log(albums)
+              }
+          });
+      }
+  </script>
+</html>
+
